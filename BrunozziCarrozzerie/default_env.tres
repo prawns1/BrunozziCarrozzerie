@@ -1,7 +1,27 @@
-[gd_resource type="Environment" load_steps=2 format=2]
+[gd_resource type="Environment" load_steps=3 format=2]
 
-[sub_resource type="ProceduralSky" id=1]
+[ext_resource path="res://asset/graphics/map/kloppenheim_06_4k.hdr" type="Texture" id=1]
+
+[sub_resource type="PanoramaSky" id=1]
+panorama = ExtResource( 1 )
 
 [resource]
 background_mode = 2
 background_sky = SubResource( 1 )
+background_sky_custom_fov = 84.3
+background_energy = 0.42
+tonemap_mode = 3
+tonemap_exposure = 0.71
+tonemap_white = 2.87
+ss_reflections_enabled = true
+ssao_enabled = true
+dof_blur_far_distance = 30.16
+glow_enabled = true
+glow_intensity = 1.37
+glow_strength = 0.66
+glow_blend_mode = 0
+glow_hdr_threshold = 1.86
+adjustment_enabled = true
+adjustment_brightness = 0.93
+adjustment_contrast = 1.14
+adjustment_saturation = 1.14
