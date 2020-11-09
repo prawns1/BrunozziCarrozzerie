@@ -40,12 +40,12 @@ func _physics_process(delta):
 		x = decreaseX(x,delta)
 		brake_val = 1.0
 	if Input.is_action_pressed("ui_left"):
-		steer_val = 1.0
+		steer_val = 2.0
 	elif Input.is_action_pressed("ui_right"):
-		steer_val = -1.0
+		steer_val = -2.0
 	
 	engine_force = throttle_val * getSpeed(x)
-	brake = brake_val * getSpeed(x)
+	brake = brake_val * 1.0 / 5.0
 	
 	steer_target = steer_val * MAX_STEER_ANGLE
 	if (steer_target < steer_angle):
