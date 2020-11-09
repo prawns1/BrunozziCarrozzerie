@@ -45,7 +45,7 @@ func _physics_process(delta):
 		steer_val = -1.0
 	
 	engine_force = throttle_val * getSpeed(x)
-	brake = brake_val * MAX_BRAKE_FORCE
+	brake = brake_val * getSpeed(x)
 	
 	steer_target = steer_val * MAX_STEER_ANGLE
 	if (steer_target < steer_angle):
@@ -61,18 +61,20 @@ func _physics_process(delta):
 
 func increaseX(x, delta):
 	x = x + delta*incrementConst
-	print(x)
+	#print(x)
 	return x
 	
 func decreaseX(x, delta):
 	x = x - delta*incrementConst*30
 	if(x < 0):
 		x = 0
-	print(x)
+#	print(x)
 	return x
 
 func getSpeed(x):
-	if(x <= 25):
+	if(x <= 20):
+	#	print(1.24 * x)
 		return 1.24*x
 	else:
-		return log(x)*52
+	#	print(log (x)*3)
+		return log(x)*3
