@@ -46,6 +46,8 @@ func _physics_process(delta):
 	var throttle_val = throttle_mult * Input.get_joy_axis(0, joy_throttle)
 	var brake_val = brake_mult * Input.get_joy_axis(0, joy_brake)
 	
+	var rpm = $wheel_front_l.get_rpm()
+	
 	# overrules for keyboard
 	if Input.is_action_pressed("ui_up"):
 		#up is pressed, X_GRAPH_COORDINATE increases
@@ -59,10 +61,18 @@ func _physics_process(delta):
 		steer_val = 2.0
 	elif Input.is_action_pressed("ui_right"):
 		steer_val = -2.0
-	
-	engine_force = throttle_val * getSpeed(x)
-	brake = brake_val * 1.0 / 5.0
-	
+		
+	#ignorare rpm < 50 e rpm > 37
+	#se freno ed rpm<50, allora vado in retro a -5 costante
+	if(brake_val == 1 && rpm<50):
+		engine_force = -5
+	else:
+		#se ho premuto su (throttle_val ==1) accelero
+		engine_force = throttle_val * getSpeed(x)
+		#sennò sto frenando perchè rpm è ancora alto e deve scendere
+		if(rpm > 37):#si
+			brake = brake_val * 2.0/3.0
+		
 	steer_target = steer_val * MAX_STEER_ANGLE
 	if (steer_target < steer_angle):
 		steer_angle -= steer_speed * delta
@@ -76,7 +86,7 @@ func _physics_process(delta):
 	steering = steer_angle
 	
 	#sta funzione è una merda ma fa il suo lavoro
-	pb_speed = ((fmod(abs($wheel_front_l.get_rpm()),pitch_constant)/pitch_constant) * a_pitch_scale + a_pitch_offset)
+	pb_speed = ((fmod(abs(rpm),pitch_constant)/pitch_constant) * a_pitch_scale + a_pitch_offset)
 	$AudioStreamPlayer.pitch_scale = pb_speed
 
 func increaseX(x, delta):
@@ -86,9 +96,8 @@ func increaseX(x, delta):
 	
 func decreaseX(x, delta):
 	x = x - delta*incrementConst*30
-	if(x < 0):
-		x = 0
-#	print(x)
+	x = max(0, x)
+	#print(x)
 	return x
 
 func getSpeed(x):
