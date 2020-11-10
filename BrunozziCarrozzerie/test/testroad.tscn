@@ -22,3 +22,7 @@ transform = Transform( 0.820531, 0, -0.571602, 0, 1, 0, 0.571602, 0, 0.820531, -
 MAX_ENGINE_FORCE = 10.0
 MAX_STEER_ANGLE = 0.1
 steer_speed = 0.5
+a_pitch_offset = 1.1
+a_pitch_scale = 2.0
+max_wheel_rpm = 1500.0
+n_gears = 5
