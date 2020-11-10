@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://asset/graphics/cars/panda84/panda.tscn" type="PackedScene" id=1]
+[ext_resource path="res://asset/graphics/cars/punto/punto.tscn" type="PackedScene" id=1]
 [ext_resource path="res://asset/graphics/gui/camera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://asset/graphics/map/road/road.tscn" type="PackedScene" id=3]
 
@@ -14,8 +14,8 @@ current = true
 fov = 71.5
 near = 0.02
 far = 8192.0
-follow_this_path = NodePath("../panda84")
+follow_this_path = NodePath("../punto")
 target_distance = 5.0
 
-[node name="panda84" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.92702, 1.02278, -1.45402 )
+[node name="punto" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.89249, 0.2, -4.31923 )
