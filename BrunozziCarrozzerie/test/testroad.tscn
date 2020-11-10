@@ -9,16 +9,19 @@
 [node name="road" parent="." instance=ExtResource( 3 )]
 
 [node name="Camera" parent="." instance=ExtResource( 2 )]
-transform = Transform( -0.414582, 0, -0.910012, 0, 1, 0, 0.910012, 0, -0.414582, 1.39956, 0.2, -3.10624 )
+transform = Transform( -0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 1.4, 1.592, -3.106 )
+doppler_tracking = 1
 current = true
-fov = 71.5
+fov = 75.0
 near = 0.02
-far = 8192.0
 follow_this_path = NodePath("../punto")
 target_distance = 5.0
 
 [node name="punto" parent="." instance=ExtResource( 1 )]
-transform = Transform( -0.414582, 0, -0.910012, 0, 1, 0, 0.910012, 0, -0.414582, -0.45223, 0.104687, -0.0991831 )
+transform = Transform( 0.857158, 0, -0.515053, 0, 1, 0, 0.515053, 0, 0.857158, -0.45223, 0.104687, -0.0991831 )
 MAX_ENGINE_FORCE = 10.0
 MAX_STEER_ANGLE = 0.1
 steer_speed = 0.5
+a_pitch_offset = 1.1
+a_pitch_scale = 2.0
+max_wheel_rpm = 1400.0

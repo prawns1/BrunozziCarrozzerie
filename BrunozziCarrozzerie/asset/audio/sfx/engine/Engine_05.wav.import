@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Engine_05.wav-4e897ca81057c4126943ace88411ed59.sample"
+
+[deps]
+
+source_file="res://asset/audio/sfx/engine/Engine_05.wav"
+dest_files=[ "res://.import/Engine_05.wav-4e897ca81057c4126943ace88411ed59.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

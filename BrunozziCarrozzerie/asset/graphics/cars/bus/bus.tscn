@@ -259,10 +259,16 @@ surfaces/4 = {
 extents = Vector3( 6.18437, 2.02721, 2.03902 )
 
 [node name="bus" type="VehicleBody"]
+mass = 8.91
 script = ExtResource( 1 )
+engine_audio_path = "res://asset/audio/sfx/engine/Engine_07.wav"
+a_pitch_offset = 1.0
+a_pitch_scale = 3.0
+max_wheel_rpm = 1200.0
+n_gears = 4
 
 [node name="wheel_front_r" type="VehicleWheel" parent="."]
-transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -2, 0.376, -1 )
+transform = Transform( 1, 0, -3.12639e-13, 0, 1, 0, 3.12639e-13, 0, 1, -1, 0.376, 2 )
 use_as_steering = true
 wheel_roll_influence = 0.7
 wheel_radius = 0.35
@@ -279,7 +285,7 @@ material/1 = null
 material/2 = null
 
 [node name="wheel_front_l" type="VehicleWheel" parent="."]
-transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -2, 0.376, 0.90904 )
+transform = Transform( 1, 0, -3.12639e-13, 0, 1, 0, 3.12639e-13, 0, 1, 0.90904, 0.376, 2 )
 use_as_steering = true
 wheel_roll_influence = 0.7
 wheel_radius = 0.35
@@ -296,7 +302,7 @@ material/1 = null
 material/2 = null
 
 [node name="wheel_rear_r" type="VehicleWheel" parent="."]
-transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 1.86944, 0.376, -1 )
+transform = Transform( 1, 0, -3.12639e-13, 0, 1, 0, 3.12639e-13, 0, 1, -1, 0.376, -1.86944 )
 use_as_traction = true
 wheel_roll_influence = 0.7
 wheel_radius = 0.35
@@ -313,7 +319,7 @@ material/1 = null
 material/2 = null
 
 [node name="wheel_rear_l" type="VehicleWheel" parent="."]
-transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 1.86944, 0.376, 0.909041 )
+transform = Transform( 1, 0, -3.12639e-13, 0, 1, 0, 3.12639e-13, 0, 1, 0.909041, 0.376, -1.86944 )
 use_as_traction = true
 wheel_roll_influence = 0.7
 wheel_radius = 0.35
@@ -330,7 +336,7 @@ material/1 = null
 material/2 = null
 
 [node name="body" type="MeshInstance" parent="."]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.346452, 0.18297, -0.0504775 )
+transform = Transform( -8.14603e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -8.14603e-08, -0.0504776, 0.18297, -0.346452 )
 mesh = SubResource( 5 )
 material/0 = null
 material/1 = null
@@ -339,7 +345,10 @@ material/3 = null
 material/4 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.346452, 1.39309, -0.0504775 )
+transform = Transform( -8.14603e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -8.14603e-08, -0.0504776, 1.39309, -0.346452 )
 shape = SubResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer3D" parent="."]
+max_db = 0.0

@@ -25,6 +25,22 @@ export var throttle_mult = 1.0
 export var joy_brake = JOY_ANALOG_L2
 export var brake_mult = 1.0
 
+############################################################
+# AUDIO CONTROL
+export(String, FILE, "*.wav") onready var engine_audio_path
+export(float) var a_pitch_offset
+export(float) var a_pitch_scale
+export(float) var max_wheel_rpm
+export(int) var n_gears
+
+var pitch_constant
+var pb_speed = 1
+
+func _ready():
+	$AudioStreamPlayer.stream = load(engine_audio_path)
+	$AudioStreamPlayer.play()
+	pitch_constant = max_wheel_rpm/n_gears
+
 func _physics_process(delta):
 	var steer_val = steering_mult * Input.get_joy_axis(0, joy_steering)
 	var throttle_val = throttle_mult * Input.get_joy_axis(0, joy_throttle)
@@ -58,6 +74,10 @@ func _physics_process(delta):
 			steer_angle = steer_target
 	
 	steering = steer_angle
+	
+	#sta funzione è una merda ma fa il suo lavoro
+	pb_speed = ((fmod(abs($wheel_front_l.get_rpm()),pitch_constant)/pitch_constant) * a_pitch_scale + a_pitch_offset)
+	$AudioStreamPlayer.pitch_scale = pb_speed
 
 func increaseX(x, delta):
 	x = x + delta*incrementConst
