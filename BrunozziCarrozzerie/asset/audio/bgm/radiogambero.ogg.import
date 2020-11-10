@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/radiogambero.ogg-55f28d260ea3429fb10523ec78bc8270.oggstr"
+
+[deps]
+
+source_file="res://asset/audio/bgm/radiogambero.ogg"
+dest_files=[ "res://.import/radiogambero.ogg-55f28d260ea3429fb10523ec78bc8270.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
