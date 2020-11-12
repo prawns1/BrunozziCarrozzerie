@@ -18,10 +18,13 @@ var incrementConst = 5
 var rpm
 #moduloLimite da l'idea di aver raggiunto il limite, la barretta non rimane ferma di getto
 var moduloLimite = 5 
+#(N.B: la rotazione della stanghetta varia da 10.0 a 250.0 MASSIMO TEORICO)
+#leggere github: "Contagiri e tachimetro scalabili" per più informazioni sulle variabili qua sotto
 var contagiriBound = 200
 var contagiriScale = 10
 var tachimetroBound = 220
 var tachimetroScale = 15
+
 
 ############################################################
 # Input
