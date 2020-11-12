@@ -15,6 +15,14 @@ var steer_angle = 0.0
 var x = 0.0
 var incrementConst = 5
 
+var rpm
+#moduloLimite da l'idea di aver raggiunto il limite, la barretta non rimane ferma di getto
+var moduloLimite = 5 
+var contagiriBound = 200
+var contagiriScale = 10
+var tachimetroBound = 220
+var tachimetroScale = 15
+
 ############################################################
 # Input
 
@@ -46,16 +54,12 @@ func _physics_process(delta):
 	var throttle_val = throttle_mult * Input.get_joy_axis(0, joy_throttle)
 	var brake_val = brake_mult * Input.get_joy_axis(0, joy_brake)
 	
-	var rpm = $wheel_front_l.get_rpm()
+	rpm = $wheel_front_l.get_rpm()
 	
 	# overrules for keyboard
 	if Input.is_action_pressed("ui_up"):
-		#up is pressed, X_GRAPH_COORDINATE increases
-		x = increaseX(x,delta)
 		throttle_val = 1.0
 	if Input.is_action_pressed("ui_down"):
-		#down is pressed, X_GRAPH_COORDINATE decreases
-		x = decreaseX(x,delta)
 		brake_val = 1.0
 	if Input.is_action_pressed("ui_left"):
 		steer_val = 2.0
@@ -65,10 +69,10 @@ func _physics_process(delta):
 	#ignorare rpm < 50 e rpm > 37
 	#se freno ed rpm<50, allora vado in retro a -5 costante
 	if(brake_val == 1 && rpm<50):
-		engine_force = -5
+		engine_force = - MAX_ENGINE_FORCE / 4
 	else:
 		#se ho premuto su (throttle_val ==1) accelero
-		engine_force = throttle_val * getSpeed(x)
+		engine_force = throttle_val * MAX_ENGINE_FORCE / 4
 		#sennò sto frenando perchè rpm è ancora alto e deve scendere
 		if(rpm > 37):#si
 			brake = brake_val * 2.0/3.0
@@ -89,21 +93,17 @@ func _physics_process(delta):
 	pb_speed = ((fmod(abs(rpm),pitch_constant)/pitch_constant) * a_pitch_scale + a_pitch_offset)
 	$AudioStreamPlayer.pitch_scale = pb_speed
 
-func increaseX(x, delta):
-	x = x + delta*incrementConst
-	#print(x)
-	return x
-	
-func decreaseX(x, delta):
-	x = x - delta*incrementConst*30
-	x = max(0, x)
-	#print(x)
-	return x
+func _process(delta):
+	setContagiri()
+	setTachimetro()
+	pass
 
-func getSpeed(x):
-	if(x <= 20):
-	#	print(1.24 * x)
-		return 1.24*x
-	else:
-	#	print(log (x)*3)
-		return log(x)*3
+func setContagiri():
+	var rot
+	rot = min(abs(rpm/contagiriScale) , contagiriBound + randi() % moduloLimite)
+	$Control/ContagiriBarretta.rect_rotation = rot
+
+func setTachimetro():
+	var rot
+	rot = min(abs(rpm/tachimetroScale), tachimetroBound + randi() % moduloLimite)
+	$Control/TachimetroBarretta.rect_rotation = rot
