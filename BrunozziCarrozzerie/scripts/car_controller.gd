@@ -25,6 +25,9 @@ var contagiriScale = 10
 var tachimetroBound = 220
 var tachimetroScale = 15
 
+var minimoRotazione = 10.0
+var massimoRotazione = 250.0
+var massimoTestoTachimetro = 220.0
 
 ############################################################
 # Input
@@ -110,3 +113,6 @@ func setTachimetro():
 	var rot
 	rot = min(abs(rpm/tachimetroScale), tachimetroBound + randi() % moduloLimite)
 	$Control/TachimetroBarretta.rect_rotation = rot
+	#rot : rotMax = speedAttuale : speedMassima
+	#rot : 250 = speedAttuale : 220
+	$Control/TachimetroText.bbcode_text = str("[center] ", int(rot * massimoTestoTachimetro / massimoRotazione)) 
