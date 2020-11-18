@@ -96,7 +96,7 @@ func _physics_process(delta):
 	steering = steer_angle
 	
 	#sta funzione è una merda ma fa il suo lavoro
-	pb_speed = ((fmod(abs(rpm),pitch_constant)/pitch_constant) * a_pitch_scale + a_pitch_offset)
+	pb_speed = ((fmod(abs(rpm/contagiriScale),pitch_constant)/pitch_constant) * a_pitch_scale + a_pitch_offset)
 	$AudioStreamPlayer.pitch_scale = pb_speed
 
 func _process(delta):
@@ -105,8 +105,11 @@ func _process(delta):
 	pass
 
 func setContagiri():
-	var rot
-	rot = min(abs(rpm/contagiriScale) , contagiriBound + randi() % moduloLimite)
+	#pb_speed [1.0, 2) (valore suono giri)
+	#rot [10.0, 250] (angolo)
+	#la funzione rimappa pb_speed in modo da farlo entrare nel range rot
+	#fx1 = x*250 - 250 = (x-1) * 250 
+	var rot = (pb_speed-1) * 250;
 	$Control/ContagiriBarretta.rect_rotation = rot
 
 func setTachimetro():
