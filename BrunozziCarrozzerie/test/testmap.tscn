@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://asset/graphics/map/map/map.tscn" type="PackedScene" id=1]
+[ext_resource path="res://asset/graphics/cars/punto/punto.tscn" type="PackedScene" id=2]
+[ext_resource path="res://asset/graphics/gui/camera.tscn" type="PackedScene" id=3]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="punto" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.000488595, 0, 1, 0, 1, 0, -1, 0, 0.000488595, -4.14275, 0.648593, 0.587361 )
+radio = "res://asset/audio/bgm/radiogambero.ogg"
+
+[node name="map" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+
+[node name="Camera" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.33858, 0.3708, -0.223562 )
+follow_this_path = NodePath("../punto")
+target_distance = 5.0
+target_height = 4.0
