@@ -19,3 +19,4 @@ follow_this_path = NodePath("../bus")
 target_distance = 5.0
 
 [node name="bus" parent="." instance=ExtResource( 4 )]
+radio = "res://asset/audio/bgm/radiofabio.ogg"

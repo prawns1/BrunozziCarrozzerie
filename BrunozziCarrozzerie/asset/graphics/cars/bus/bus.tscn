@@ -263,6 +263,7 @@ extents = Vector3( 6.18437, 2.02721, 2.03902 )
 mass = 8.91
 script = ExtResource( 1 )
 engine_audio_path = "res://asset/audio/sfx/engine/Engine_07.wav"
+radio = "\"res://asset/audio/bgm/radiofabio.ogg\""
 a_pitch_offset = 1.0
 a_pitch_scale = 3.0
 max_wheel_rpm = 1200.0
@@ -360,13 +361,16 @@ bus = "Cars"
 [node name="Gigi" type="AudioStreamPlayer3D" parent="."]
 
 [node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.261, 0 )
 enabled = true
-cast_to = Vector3( 0, -9.104, 0 )
+cast_to = Vector3( 0, -5.691, 0 )
 collide_with_areas = true
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
 
 [node name="RandomAudio" type="Timer" parent="."]
+wait_time = 20.0
 
 [node name="Control" parent="." instance=ExtResource( 19 )]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
