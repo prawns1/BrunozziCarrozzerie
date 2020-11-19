@@ -5,7 +5,7 @@ extends VehicleBody
 
 export var MAX_ENGINE_FORCE = 200.0
 export var MAX_BRAKE_FORCE = 5.0
-export var MAX_STEER_ANGLE = 0.5
+export var MAX_STEER_ANGLE = 0.25
 
 export var steer_speed = 5.0
 
@@ -16,6 +16,7 @@ var x = 0.0
 var incrementConst = 5
 
 var rpm
+
 #moduloLimite da l'idea di aver raggiunto il limite, la barretta non rimane ferma di getto
 var moduloLimite = 5 
 #(N.B: la rotazione della stanghetta varia da 10.0 a 250.0 MASSIMO TEORICO)
@@ -28,6 +29,9 @@ var tachimetroScale = 15
 var minimoRotazione = 10.0
 var massimoRotazione = 250.0
 var massimoTestoTachimetro = 220.0
+
+var respawnPosition = Vector3(0,0,0)
+var justRespawned = false
 
 ############################################################
 # Input
@@ -102,6 +106,7 @@ func _physics_process(delta):
 func _process(delta):
 	setContagiri()
 	setTachimetro()
+	checkRaycast()
 	pass
 
 func setContagiri():
@@ -119,3 +124,29 @@ func setTachimetro():
 	#rot : rotMax = speedAttuale : speedMassima
 	#rot : 250 = speedAttuale : 220
 	$Control/TachimetroText.bbcode_text = str("[center] ", int(rot * massimoTestoTachimetro / massimoRotazione)) 
+
+func checkRaycast():
+	var timer = get_node("Timer")
+	var ray = get_node("RayCast")
+	
+	if(timer.is_stopped() == false):
+		return
+		
+	if(ray.is_colliding() == false && justRespawned == false):
+		#FARE PARTIRE L'AUDIO DI GIGI: PORCODDIO SIAMO NEL FOSSO
+		timer.start() #see _on_Timer_timeout()
+		pass
+	else:
+		justRespawned = false
+		respawnPosition = translation
+
+
+func _on_Timer_timeout():
+	#respawning con reset rotazione
+	#translation e' da sostituire con un punto di respawn
+	translation = respawnPosition
+	rotation_degrees = Vector3(0,0,0)
+	translation = Vector3(0,0,0)
+	sleeping = true
+	justRespawned = true
+	get_node("Timer").stop()
