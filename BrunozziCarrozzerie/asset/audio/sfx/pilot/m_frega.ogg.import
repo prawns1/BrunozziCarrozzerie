@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/m_frega.ogg-2eec7abe1b40bf47def5bf5481a612c5.oggstr"
+
+[deps]
+
+source_file="res://asset/audio/sfx/pilot/m_frega.ogg"
+dest_files=[ "res://.import/m_frega.ogg-2eec7abe1b40bf47def5bf5481a612c5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

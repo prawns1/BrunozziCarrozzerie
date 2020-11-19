@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/m_lol.ogg-76503d96733f084563ecc0cfb12571cc.oggstr"
+
+[deps]
+
+source_file="res://asset/audio/sfx/pilot/m_lol.ogg"
+dest_files=[ "res://.import/m_lol.ogg-76503d96733f084563ecc0cfb12571cc.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

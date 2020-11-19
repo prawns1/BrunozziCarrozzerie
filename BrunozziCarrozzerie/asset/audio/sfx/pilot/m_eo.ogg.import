@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/m_eo.ogg-909e4556941730b79cc5640eac8bb0e0.oggstr"
+
+[deps]
+
+source_file="res://asset/audio/sfx/pilot/m_eo.ogg"
+dest_files=[ "res://.import/m_eo.ogg-909e4556941730b79cc5640eac8bb0e0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/m_cazzo.ogg-21741572396a75cd1a9a85155dd88b40.oggstr"
+
+[deps]
+
+source_file="res://asset/audio/sfx/pilot/m_cazzo.ogg"
+dest_files=[ "res://.import/m_cazzo.ogg-21741572396a75cd1a9a85155dd88b40.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -46,6 +46,7 @@ export var brake_mult = 1.0
 ############################################################
 # AUDIO CONTROL
 export(String, FILE, "*.wav") onready var engine_audio_path
+export(String) var radio
 export(float) var a_pitch_offset
 export(float) var a_pitch_scale
 export(float) var max_wheel_rpm
@@ -54,7 +55,12 @@ export(int) var n_gears
 var pitch_constant
 var pb_speed = 1
 
+var audio = ["res://asset/audio/sfx/pilot/m_cazzo.ogg", "res://asset/audio/sfx/pilot/m_eo.ogg","res://asset/audio/sfx/pilot/m_frega.ogg",
+			 "res://asset/audio/sfx/pilot/m_guarda.ogg", "res://asset/audio/sfx/pilot/m_limoni.ogg", "res://asset/audio/sfx/pilot/m_linso.ogg", "res://asset/audio/sfx/pilot/m_lol.ogg",
+			"res://asset/audio/sfx/pilot/m_otto.ogg"]
+
 func _ready():
+	initRadio()
 	$AudioStreamPlayer.stream = load(engine_audio_path)
 	$AudioStreamPlayer.play()
 	pitch_constant = max_wheel_rpm/n_gears
@@ -133,9 +139,9 @@ func checkRaycast():
 		return
 		
 	if(ray.is_colliding() == false && justRespawned == false):
-		#FARE PARTIRE L'AUDIO DI GIGI: PORCODDIO SIAMO NEL FOSSO
+		playGigi("res://asset/audio/sfx/misc/fosso.ogg")
+		$Gigi.play()
 		timer.start() #see _on_Timer_timeout()
-		pass
 	else:
 		justRespawned = false
 		respawnPosition = translation
@@ -148,5 +154,19 @@ func _on_Timer_timeout():
 	rotation_degrees = Vector3(0,0,0)
 	translation = Vector3(0,0,0)
 	sleeping = true
-	justRespawned = true
 	get_node("Timer").stop()
+	justRespawned = true
+
+
+func playGigi(path):
+	$Gigi.stream = load(path)
+	$Gigi.play()
+
+func initRadio():
+	$AudioStreamPlayer2.stream = load(radio)
+	$AudioStreamPlayer2.play()
+
+func _on_RandomAudio_timeout():
+	var thisSourcePath
+	thisSourcePath = randi()%audio.size()
+	playGigi(audio[thisSourcePath])
